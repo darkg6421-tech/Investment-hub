@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STP Calculator</title>
+    <style>
+        body {
+            background-color: #2c2c2c;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input, button {
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Systematic Transfer Plan (STP) Calculator</h1>
+    <form id="stpForm">
+        <label for="investmentAmount">Investment Amount (in USD):</label>
+        <input type="number" id="investmentAmount" required>
+        
+        <label for="transferAmount">Transfer Amount per Interval (in USD):</label>
+        <input type="number" id="transferAmount" required>
+        
+        <label for="transferInterval">Transfer Interval (in days):</label>
+        <input type="number" id="transferInterval" required>
+        
+        <label for="totalDuration">Total Duration (in days):</label>
+        <input type="number" id="totalDuration" required>
+
+        <button type="submit">Calculate</button>
+    </form>
+    
+    <h2 id="result"></h2>
+
+    <script>
+        document.getElementById('stpForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const investmentAmount = parseFloat(document.getElementById('investmentAmount').value);
+            const transferAmount = parseFloat(document.getElementById('transferAmount').value);
+            const transferInterval = parseFloat(document.getElementById('transferInterval').value);
+            const totalDuration = parseFloat(document.getElementById('totalDuration').value);
+            
+            const totalIntervals = Math.floor(totalDuration / transferInterval);
+            const totalTransferred = transferAmount * totalIntervals;
+
+            document.getElementById('result').innerText = `Total Amount Transferred: $${totalTransferred.toFixed(2)} over ${totalIntervals} intervals.`;
+        });
+    </script>
+</body>
+</html>
