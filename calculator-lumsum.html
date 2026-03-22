@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lump Sum Calculator</title>
+    <script>
+        function calculateFutureValue() {
+            const investmentAmount = parseFloat(document.getElementById('investmentAmount').value);
+            const annualReturnRate = parseFloat(document.getElementById('annualReturnRate').value) / 100;
+            const investmentPeriod = parseFloat(document.getElementById('investmentPeriod').value);
+
+            const futureValue = investmentAmount * Math.pow(1 + annualReturnRate, investmentPeriod);
+            document.getElementById('result').innerText = `Future Value: $${futureValue.toFixed(2)}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>Lump Sum Calculator</h1>
+    <form onsubmit="event.preventDefault(); calculateFutureValue();">
+        <label for="investmentAmount">Investment Amount ($):</label><br>
+        <input type="number" id="investmentAmount" required><br><br>
+
+        <label for="annualReturnRate">Annual Return Rate (%):</label><br>
+        <input type="number" id="annualReturnRate" required><br><br>
+
+        <label for="investmentPeriod">Investment Period (years):</label><br>
+        <input type="number" id="investmentPeriod" required><br><br>
+
+        <input type="submit" value="Calculate">
+    </form>
+    <h2 id="result"></h2>
+</body>
+</html>
